@@ -2,9 +2,8 @@ import React from 'react'
 import { redirect } from "react-router-dom";
 
 // helper functions
-import { createBudget, fetchData } from '../helpers'
+import { createBudget, fetchData, waait } from '../helpers'
 import { useLoaderData } from 'react-router-dom';
-
 import { toast } from 'react-toastify';
 
 // Components
@@ -19,6 +18,9 @@ export function dashboardLoader(){
 
 // action
 export async function dashboardAction({ request }) {
+  await waait();
+
+
   const data = await request.formData();
   const {_action, ...values} = Object.fromEntries(data)
   // new user submission 
