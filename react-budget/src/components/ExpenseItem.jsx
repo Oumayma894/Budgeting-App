@@ -7,7 +7,7 @@ import { Link, useFetcher } from 'react-router-dom'
 
 import { TrashIcon } from '@heroicons/react/24/solid'
 
-const ExpenseItem = ({ expense }) => {
+const ExpenseItem = ({ expense, showBudget }) => {
   const fetcher = useFetcher();
 
   const budget = getAllMatchingItems ({
@@ -21,14 +21,15 @@ const ExpenseItem = ({ expense }) => {
     <td>{expense.name}</td>
     <td>{formatCurrency(expense.amount)}</td>
     <td>{formatDateToLocaleString(expense.createAt)}</td>
-    <td>
+   {
+   showBudget && (<td>
   <Link 
     to={`/budget/${budget.id}`} 
     style={{ "--accent": budget.color }}
   >
     {budget.name}
   </Link>
-</td>
+</td>)} 
   <td>
     <fetcher.Form method='post'>
       {/* What to do with it  */}
